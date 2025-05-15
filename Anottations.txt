@@ -1,0 +1,26 @@
+01. Cliente abre a página
+    * Formulário
+        -> puxar perguntas de uma api com arquivo json (usar fetch)
+        -> Arquivo .json:
+            - id
+            - pergunta (texto)
+            - tipo do input
+    * Botão de envio
+        -> Enviar para o whatsapp da pessoa com a mensagem especifica (a pensar)
+        -> Adicionar em um banco de dados as respostas do formulario
+
+
+02. Backend
+    * configurar express, mongodb
+    * rotas para pegar as respostas
+    * rotas para envio do Formulário
+        -> salvar no banco de dados mongodb
+
+03. criar uma pagina ADM
+    * renderizar as respostas do formulario
+    * lista de cards, cada card:
+        - nome
+        - data
+        - opção de abrir a lista (renderizar em outra pagina)
+
+    
