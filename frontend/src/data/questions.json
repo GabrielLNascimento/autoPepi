@@ -11,7 +11,7 @@
     },
     {
         "id": 3,
-        "question": "Qual o seu numero de telefone? (Ex: 47 99999-9999)",
+        "question": "Qual o seu numero de telefone? Ex: 4799999-9999",
         "type": "text"
     },
     {

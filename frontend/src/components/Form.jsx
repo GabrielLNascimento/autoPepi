@@ -5,7 +5,6 @@ import '../styles/Form.css';
 
 const Form = () => {
     const [answers, setAnswers] = useState({});
-    const [error, setError] = useState('');
 
     const handleChange = (questionId, value) => {
         setAnswers((prev) => ({
@@ -22,11 +21,10 @@ const Form = () => {
         );
 
         if (!allAnswered) {
-            setError('Por favor, responda todas as perguntas antes de enviar.');
+            alert('Por favor, responda todas as perguntas antes de enviar.');
             return;
         }
 
-        setError('');
         const result = questions.map((q) => ({
             question: q.question,
             answer: answers[q.id],
@@ -85,8 +83,9 @@ const Form = () => {
                         )}
                     </div>
                 ))}
-                {error && <p>{error}</p>}
-                <button type="submit">Enviar</button>
+                <button type="submit" className="btn-submit">
+                    Enviar
+                </button>
             </form>
         </>
     );
