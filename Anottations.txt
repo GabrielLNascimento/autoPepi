@@ -5,7 +5,7 @@
             - id
             - pergunta (texto)
             - opções (se for de assinalar)
-            - tipo do input * opcional *
+            - tipo do input opcional 
     * Botão de envio
         -> Enviar para o whatsapp da pessoa com a mensagem especifica (a pensar)
         -> Adicionar em um banco de dados as respostas do formulario

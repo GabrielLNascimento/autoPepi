@@ -1,0 +1,95 @@
+import React, { useState } from 'react';
+import questions from '../data/questions.json';
+
+import '../styles/Form.css';
+
+const Form = () => {
+    const [answers, setAnswers] = useState({});
+    const [error, setError] = useState('');
+
+    const handleChange = (questionId, value) => {
+        setAnswers((prev) => ({
+            ...prev,
+            [questionId]: value,
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const allAnswered = questions.every(
+            (q) => answers[q.id] && answers[q.id].toString().trim() !== ''
+        );
+
+        if (!allAnswered) {
+            setError('Por favor, responda todas as perguntas antes de enviar.');
+            return;
+        }
+
+        setError('');
+        const result = questions.map((q) => ({
+            question: q.question,
+            answer: answers[q.id],
+        }));
+
+        let message = 'Respostas do formulário:\n';
+
+        result.forEach((item, index) => {
+            message += `${index + 1}. ${item.question}: ${item.answer}\n`;
+        });
+
+        const phoneNumber = '47991015245';
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+            message
+        )}`;
+
+        window.open(url, '_blank');
+    };
+
+    return (
+        <>
+            <h1>Formulário do Pepi</h1>
+            <form onSubmit={handleSubmit} className="form-container">
+                {questions.map((q) => (
+                    <div key={q.id} className="question">
+                        <p className="title-question">
+                            <strong>{q.question}</strong>
+                        </p>
+
+                        {q.type === 'radio' &&
+                            q.options &&
+                            q.options.map((option, index) => (
+                                <label key={index} className="awnser-question">
+                                    <input
+                                        type="radio"
+                                        name={`question-${q.id}`}
+                                        value={option}
+                                        checked={answers[q.id] === option}
+                                        onChange={() =>
+                                            handleChange(q.id, option)
+                                        }
+                                    />
+                                    {option}
+                                </label>
+                            ))}
+
+                        {q.type === 'text' && (
+                            <input
+                                type="text"
+                                value={answers[q.id] || ''}
+                                onChange={(e) =>
+                                    handleChange(q.id, e.target.value)
+                                }
+                                placeholder="Digite sua resposta aqui"
+                            />
+                        )}
+                    </div>
+                ))}
+                {error && <p>{error}</p>}
+                <button type="submit">Enviar</button>
+            </form>
+        </>
+    );
+};
+
+export default Form;

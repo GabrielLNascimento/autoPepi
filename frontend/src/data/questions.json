@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "question": "Qual o seu Nome?",
+        "type": "text"
+    },
+    {
+        "id": 2,
+        "question": "Qual o seu Email?",
+        "type": "text"
+    },
+    {
+        "id": 3,
+        "question": "Qual o seu numero de telefone? (Ex: 47 99999-9999)",
+        "type": "text"
+    },
+    {
+        "id": 4,
+        "question": "Faça qualquer coisa:",
+        "type": "radio",
+        "options": ["1aa", "2aa", "3aa"]
+    }
+]
