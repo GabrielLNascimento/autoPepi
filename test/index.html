@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Formulário Exemplo</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            label {
+                display: block;
+                margin: 10px 0 5px;
+            }
+            .result {
+                margin-top: 20px;
+                padding: 10px;
+                border: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Formulário de Contato</h1>
+
+        <form id="meuFormulario">
+            <label
+                >Nome:
+                <input type="text" name="nome" />
+            </label>
+
+            <label
+                >Email:
+                <input type="email" name="email" />
+            </label>
+
+            <label>Interesses:</label>
+            <label
+                ><input type="checkbox" name="interesses" value="Música" />
+                Música</label
+            >
+            <label
+                ><input type="checkbox" name="interesses" value="Filmes" />
+                Filmes</label
+            >
+            <label
+                ><input type="checkbox" name="interesses" value="Esportes" />
+                Esportes</label
+            >
+
+            <label>Gênero:</label>
+            <label
+                ><input type="radio" name="genero" value="Masculino" />
+                Masculino</label
+            >
+            <label
+                ><input type="radio" name="genero" value="Feminino" />
+                Feminino</label
+            >
+            <label
+                ><input type="radio" name="genero" value="Outro" /> Outro</label
+            >
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <div class="result" id="resultado"></div>
+
+        <script>
+            const form = document.getElementById('meuFormulario');
+            const resultado = document.getElementById('resultado');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); // Impede envio padrão
+
+                // Captura os dados
+                const formData = new FormData(form);
+
+                // Obter valores individuais
+                const nome = formData.get('nome');
+                const email = formData.get('email');
+                const genero = formData.get('genero');
+
+                // Para múltiplos checkboxes com mesmo name
+                const interessesSelecionados = form.querySelectorAll(
+                    'input[name="interesses"]:checked'
+                );
+                const interesses = Array.from(interessesSelecionados).map(
+                    (el) => el.value
+                );
+
+                // Exibir os dados
+                resultado.innerHTML = `
+        <strong>Nome:</strong> ${nome}<br>
+        <strong>Email:</strong> ${email}<br>
+        <strong>Gênero:</strong> ${genero}<br>
+        <strong>Interesses:</strong> ${interesses.join(', ')}
+      `;
+
+                // Também pode imprimir no console
+                console.log({ nome, email, genero, interesses });
+            });
+        </script>
+    </body>
+</html>
